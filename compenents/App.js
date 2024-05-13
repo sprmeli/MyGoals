@@ -1,31 +1,33 @@
 import { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from 'react-native';
 import GoalInput from './components/Goallnput';
-import GoalItem from './components/Goalltem';
+import GoalItem from './components/GoalItem';
 
 export default function App() {
   const [goals, setGoals] = useState([])
 
 
-
-
-  
   function handleAddGoal(enteredGoalText) {
     // console.log(enteredGoalText)
     // console.log('Hello You')
     setGoals(() => [...goals, {text: enteredGoalText, key: Math.random().toString()}])
-    console.log(goals)
+    console.log('goals', goals)
+    console.log('handleAddGoal')
   }
 
-  function handleDeleteGoal(){
+
+  function handleDeleteGoal(id){
     console.log('DELETE')
+                  const deleteGoal = goals.filter((goal) => {return goal.key !==id} )
+    setGoals(deleteGoal)
   }
 
 
- 
+
+
   return (
     <View style={styles.container}>
-      {/* <View style={styles.inputContainer}>
+      {/* <View style={styles.inputContainer}>|
         <TextInput
           style={styles.textInput}
           placeholder='Your Goal!'
@@ -51,6 +53,7 @@ export default function App() {
               <GoalItem
                 itemData={itemData}
                 onDeleteItem={handleDeleteGoal}
+                id={itemData.item.key}
               />
             )
           }}
@@ -62,6 +65,8 @@ export default function App() {
     </View>
   );
 }
+
+
 
 
 const styles = StyleSheet.create({
