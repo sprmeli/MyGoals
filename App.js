@@ -21,7 +21,6 @@ export default function App() {
     setGoals(deleteGoal)
   }
 
-  
   return (
     <View style={styles.container}>
       {/* <View style={styles.inputContainer}>
